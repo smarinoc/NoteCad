@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">NoteCad</string>
+    <string name="title_activity_button">Button</string>
+    <string name="partial_note">Nota parcial</string>
+    <string name="partial_average">Promedio parcial</string>
+    <string name="final_average">Promedio final</string>
+    <string name="final_note">Nota final</string>
+    <string-array name="optionsDays">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sábado</item>
+        <item>Domingo</item>
+    </string-array>
+    <string-array name="optionsHours">
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+    </string-array>
+    <string name="subject_name">Nombre de la materia</string>
+    <string name="color">Color</string>
+    <string name="number_of_credits">Número de créditos</string>
+    <string name="day">Día</string>
+    <string name="start_hour">Hora inicio</string>
+    <string name="final_hour">Hora final</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save">Guardar</string>
+    <string name="note">Nota</string>
+    <string name="percentage">Porcentaje</string>
+    <string name="missing_to_win">Falta para ganar</string>
+    <string name="subjects">Materias</string>
+    <string name="add_subject">Añadir materia</string>
+    <string name="add_note">Añadir nota</string>
+    <string name="schedule">Horario</string>
+    <string name="quick_calculation">Cálculo rápido</string>
+    <string name="reminders">recordatorios</string>
+</resources>
