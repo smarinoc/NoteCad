@@ -45,4 +45,8 @@
     <string name="schedule">Horario</string>
     <string name="quick_calculation">Cálculo rápido</string>
     <string name="reminders">recordatorios</string>
+    <string name="credits">Créditos</string>
+    <string name="name">Nombre</string>
+    <string name="information">información</string>
+    <string name="grades">Notas</string>
 </resources>

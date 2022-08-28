@@ -17,19 +17,28 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr04_20221.notecad.R
+import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.GradeEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.InputForm
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.Button
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.GradeViewModel
 
 @Composable
-fun FormGrade(navController: NavHostController, title: MutableState<String>) {
+fun FormGrade(
+    navController: NavHostController,
+    title: MutableState<String>,
+    idCourse: Int,
+    gradeViewModel: GradeViewModel = hiltViewModel()
+) {
     var grade = rememberSaveable { mutableStateOf("") }
     var percentage = rememberSaveable { mutableStateOf("") }
+    var name = rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
-    title.value= stringResource(R.string.add_note)
+    title.value = stringResource(R.string.add_note)
     Surface(
         shadowElevation = 5.dp,
         shape = Shapes.large,
@@ -44,6 +53,19 @@ fun FormGrade(navController: NavHostController, title: MutableState<String>) {
                 .padding(5.dp)
                 .fillMaxWidth()
         ) {
+            InputForm(
+                placeholder = stringResource(id = R.string.name),
+                icon = Icons.Rounded.Note,
+                contentDescription = "Note",
+                value = name,
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Next,
+                keyboardActions = KeyboardActions(
+                    onNext = {
+                        focusManager.moveFocus(FocusDirection.Down)
+                    }
+                )
+            )
             InputForm(
                 placeholder = stringResource(id = R.string.note),
                 icon = Icons.Rounded.Grade,
@@ -65,16 +87,28 @@ fun FormGrade(navController: NavHostController, title: MutableState<String>) {
                 keyboardType = KeyboardType.Decimal,
                 imeAction = ImeAction.Next,
                 keyboardActions = KeyboardActions(
-                    onNext = {
-                        focusManager.moveFocus(FocusDirection.Down)
+                    onDone = {
+                        focusManager.clearFocus()
                     }
                 )
             )
             Spacer(modifier = Modifier.height(20.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-                Button(text = stringResource(id = R.string.cancel), onClick = {})
+                Button(text = stringResource(id = R.string.cancel), onClick = {
+                    navController.popBackStack()
+                })
                 Spacer(modifier = Modifier.width(10.dp))
-                Button(text = stringResource(id = R.string.save), onClick = {})
+                Button(text = stringResource(id = R.string.save), onClick = {
+                    gradeViewModel.addGrade(
+                        GradeEntity(
+                            id_course = idCourse,
+                            grade = grade.value.toDouble(),
+                            percentage = percentage.value.toDouble(),
+                            name = name.value
+                        )
+                    )
+                    navController.popBackStack()
+                })
 
             }
             Spacer(modifier = Modifier.width(10.dp))

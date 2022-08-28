@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.layout.LayoutMain
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.NoteCadTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +29,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
 @Preview(
     showBackground = true,
 )
 @Composable
 fun DefaultPreview() {
     NoteCadTheme {
-        LayoutMain()
     }
 }

@@ -4,6 +4,7 @@
     package="co.edu.udea.compumovil.gr04_20221.notecad">
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,11 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteCad"
         tools:targetApi="31">
-        <activity
-            android:name=".Button"
-            android:exported="false"
-            android:label="@string/title_activity_button"
-            android:theme="@style/Theme.NoteCad" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
