@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 interface GradeRepository {
     fun getGradesByCourse(id_course: Int): LiveData<List<GradeEntity>>
-    suspend fun getById(id: Int) : GradeEntity
+    fun getAllGrade(): LiveData<List<GradeEntity>>
+    fun getById(id: Int) : LiveData<GradeEntity>
     suspend fun insert(grade: GradeEntity)
     suspend fun update(grade: GradeEntity)
     suspend fun delete(grade: GradeEntity)
@@ -20,7 +21,11 @@ class GradeRepositoryRoom @Inject constructor(
         return gradeDao.getGradesByCourse(id_course)
     }
 
-    override suspend fun getById(id: Int): GradeEntity {
+    override fun getAllGrade(): LiveData<List<GradeEntity>> {
+        return gradeDao.getAllGrade()
+    }
+
+    override fun getById(id: Int): LiveData<GradeEntity> {
         return gradeDao.getById(id)
     }
 

@@ -1,5 +1,6 @@
 package co.edu.udea.compumovil.gr04_20221.notecad.data.entites
 
+import androidx.compose.ui.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

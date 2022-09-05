@@ -18,7 +18,20 @@ import co.edu.udea.compumovil.gr04_20221.notecad.ui.Menu
 fun NavGraph(title: MutableState<String>, navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.MENU.route) {
         composable(Screen.COURSES.route) { Courses(navController, title) }
-        composable(Screen.FORM_COURSE.route) { FormCourse(navController, title) }
+        composable(
+            route = "${Screen.FORM_COURSE.route}/{id}",
+            arguments = listOf(navArgument("id") {
+                type = NavType.IntType
+            })
+        )
+        { backStackEntry ->
+            val idCourse = backStackEntry.arguments?.getInt("id")
+            FormCourse(
+                idCourse = idCourse!!,
+                navController = navController,
+                title = title
+            )
+        }
         composable(Screen.MENU.route) { Menu(navController, title) }
         composable(
             route = "${Screen.DETAILS_COURSE.route}/{id}",
@@ -35,15 +48,19 @@ fun NavGraph(title: MutableState<String>, navController: NavHostController) {
             )
         }
         composable(
-            route = "${Screen.FORM_GRADE.route}/{idCourse}",
+            route = "${Screen.FORM_GRADE.route}/{idCourse}&{id}",
             arguments = listOf(navArgument("idCourse") {
+                type = NavType.IntType
+            }, navArgument("id"){
                 type = NavType.IntType
             })
         )
         { backStackEntry ->
             val idCourse = backStackEntry.arguments?.getInt("idCourse")
+            val id = backStackEntry.arguments?.getInt("id")
             FormGrade(
                 idCourse = idCourse!!,
+                id = id!!,
                 navController = navController,
                 title = title
             )

@@ -11,25 +11,35 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-
 @HiltViewModel
 class GradeViewModel @Inject constructor(
     private val gradeRepositoryRoom: GradeRepositoryRoom
-):  ViewModel(){
-    fun grades(id_course: Int): LiveData<List<GradeEntity>>{
+) : ViewModel() {
+    fun grades(id_course: Int): LiveData<List<GradeEntity>> {
         return gradeRepositoryRoom.getGradesByCourse(id_course)
     }
-    fun addGrade( grade: GradeEntity) {
+
+    fun getAllGrade(): LiveData<List<GradeEntity>> {
+        return gradeRepositoryRoom.getAllGrade()
+    }
+
+    fun gradeByID(id: Int): LiveData<GradeEntity> {
+        return gradeRepositoryRoom.getById(id)
+    }
+
+    fun addGrade(grade: GradeEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             gradeRepositoryRoom.insert(grade)
         }
     }
-    fun deleteGrade( grade: GradeEntity) {
+
+    fun deleteGrade(grade: GradeEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             gradeRepositoryRoom.delete(grade)
         }
     }
-    fun updateGrade( grade: GradeEntity) {
+
+    fun updateGrade(grade: GradeEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             gradeRepositoryRoom.update(grade)
         }
