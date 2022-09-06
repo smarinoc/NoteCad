@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr04_20221.notecad.ui
+package co.edu.udea.compumovil.gr04_20221.notecad.ui.composables
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardActions
@@ -27,7 +27,7 @@ fun InputForm(
     ),
     imeAction: ImeAction = ImeAction.Default,
     readOnly: Boolean = false,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     OutlinedTextField(
         value = value.value, onValueChange = { value.value = it },
@@ -38,13 +38,15 @@ fun InputForm(
             Icon(imageVector = icon, contentDescription = contentDescription)
         },
         singleLine = true,
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier
+            .fillMaxWidth()
+            ,
         keyboardOptions = KeyboardOptions(
             capitalization = KeyboardCapitalization.Sentences,
             keyboardType = keyboardType,
             imeAction = imeAction
         ),
         keyboardActions = keyboardActions,
-        readOnly = readOnly
+        readOnly = readOnly,
     )
 }

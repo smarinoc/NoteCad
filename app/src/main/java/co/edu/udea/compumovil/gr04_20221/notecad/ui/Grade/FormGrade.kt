@@ -8,6 +8,8 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -21,7 +23,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.GradeEntity
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.InputForm
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InputForm
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.Button
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
@@ -32,13 +34,21 @@ fun FormGrade(
     navController: NavHostController,
     title: MutableState<String>,
     idCourse: Int,
-    gradeViewModel: GradeViewModel = hiltViewModel()
+    gradeViewModel: GradeViewModel = hiltViewModel(),
+    id: Int
 ) {
     var grade = rememberSaveable { mutableStateOf("") }
     var percentage = rememberSaveable { mutableStateOf("") }
     var name = rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     title.value = stringResource(R.string.add_note)
+    val gradeEntity by gradeViewModel.gradeByID(id = id).observeAsState()
+
+    if (gradeEntity != null) {
+        grade.value = gradeEntity!!.grade.toString()
+        percentage.value = gradeEntity!!.percentage.toString()
+        name.value = gradeEntity!!.name.toString()
+    }
     Surface(
         shadowElevation = 5.dp,
         shape = Shapes.large,
@@ -81,7 +91,7 @@ fun FormGrade(
             )
             InputForm(
                 placeholder = stringResource(id = R.string.percentage),
-                icon = Icons.Rounded.PartyMode,
+                icon = Icons.Rounded.ConfirmationNumber,
                 contentDescription = "numbers",
                 value = percentage,
                 keyboardType = KeyboardType.Decimal,
@@ -98,17 +108,31 @@ fun FormGrade(
                     navController.popBackStack()
                 })
                 Spacer(modifier = Modifier.width(10.dp))
-                Button(text = stringResource(id = R.string.save), onClick = {
-                    gradeViewModel.addGrade(
-                        GradeEntity(
-                            id_course = idCourse,
-                            grade = grade.value.toDouble(),
-                            percentage = percentage.value.toDouble(),
-                            name = name.value
-                        )
-                    )
-                    navController.popBackStack()
-                })
+                Button(
+                    text = stringResource(id = if (gradeEntity != null) R.string.edit else R.string.save),
+                    onClick = {
+                        if (gradeEntity != null) {
+                            gradeViewModel.updateGrade(
+                                GradeEntity(
+                                    id = id,
+                                    id_course = idCourse,
+                                    grade = grade.value.toDouble(),
+                                    percentage = percentage.value.toDouble(),
+                                    name = name.value
+                                )
+                            )
+                        } else {
+                            gradeViewModel.addGrade(
+                                GradeEntity(
+                                    id_course = idCourse,
+                                    grade = grade.value.toDouble(),
+                                    percentage = percentage.value.toDouble(),
+                                    name = name.value
+                                )
+                            )
+                        }
+                        navController.popBackStack()
+                    })
 
             }
             Spacer(modifier = Modifier.width(10.dp))

@@ -10,8 +10,11 @@ interface GradeDao {
     @Query("SELECT * FROM grade_table WHERE id_course = :id_course")
     fun getGradesByCourse(id_course: Int): LiveData<List<GradeEntity>>
 
+    @Query("SELECT * FROM grade_table")
+    fun getAllGrade(): LiveData<List<GradeEntity>>
+
     @Query("SELECT * FROM grade_table WHERE id = :id")
-    fun getById(id: Int): GradeEntity
+    fun getById(id: Int): LiveData<GradeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(grade: GradeEntity)
