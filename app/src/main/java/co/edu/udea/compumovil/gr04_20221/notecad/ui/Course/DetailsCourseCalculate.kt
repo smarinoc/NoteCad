@@ -1,7 +1,7 @@
 package co.edu.udea.compumovil.gr04_20221.notecad.ui.Course
 
-
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -21,32 +21,27 @@ import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr04_20221.notacad.utils.*
 import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.navigation.Screen
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.ActionButtons
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InfoDetail
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.layout.LayoutInfo
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
-import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.CourseViewModel
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.GradeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsCourse(
-    id: Int = -1,
+fun DetailCourseCalculare(
     navController: NavHostController,
-    gradeViewModel: GradeViewModel = hiltViewModel(),
-    courseViewModel: CourseViewModel = hiltViewModel(),
     title: MutableState<String>,
-) {
-    val course by courseViewModel.courseById(id = id).observeAsState()
-    val grades by gradeViewModel.grades(id_course = id).observeAsState(arrayListOf())
+    gradeViewModel: GradeViewModel = hiltViewModel(),
+){
+    val grades by gradeViewModel.grades(id_course = 99).observeAsState(arrayListOf())
     val parcialGrade = calculatePartialGrade(grades)
     val finalGrade = calculateFinalGrade(grades)
     val percentage = countPercentage(grades)
     val missingToWin = missingToWin(grades)
-    title.value = course?.name.toString()
+    title.value= stringResource(id = R.string.calculator)
     Scaffold(floatingActionButton = {
         FloatingActionButton(
-            onClick = { navController.navigate("${Screen.FORM_GRADE.route}/${id}&${-1}") },
+            onClick = { navController.navigate(Screen.FORM_GRADE_CALCULATE.route) },
             shape = Shapes.Full,
             containerColor = Teal200
         ) {
@@ -55,7 +50,9 @@ fun DetailsCourse(
     }) {
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(10.dp),
-            modifier = Modifier.padding(top = 10.dp, bottom = 50.dp)
+            modifier = Modifier
+                .padding(top = 10.dp, bottom = 50.dp)
+                .clickable(enabled = false, onClick = {})
         ) {
             item {
                 LayoutInfo(title = stringResource(id = R.string.information)) {
@@ -63,18 +60,6 @@ fun DetailsCourse(
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                         horizontalAlignment = Alignment.End
                     ) {
-                        InfoDetail(
-                            label = stringResource(id = R.string.name),
-                            text = course?.name.toString(),
-                            color = Color.Black
-                        )
-                        Divider(thickness = 0.5.dp, modifier = Modifier.background(Color.LightGray))
-                        InfoDetail(
-                            label = stringResource(id = R.string.credits),
-                            text = course?.credits.toString(),
-                            color = Color.Black
-                        )
-                        Divider(thickness = 0.5.dp, modifier = Modifier.background(Color.LightGray))
                         InfoDetail(
                             label = stringResource(id = R.string.percentage),
                             text = String.format("%.1f", percentage) + "%",
@@ -100,18 +85,6 @@ fun DetailsCourse(
                         )
                         Divider(thickness = 0.5.dp, modifier = Modifier.background(Color.LightGray))
                         Spacer(modifier = Modifier.height(10.dp))
-                        ActionButtons(
-                            onEdit = { navController.navigate("${Screen.FORM_COURSE.route}/${id}") },
-                            onDelete = {
-                                course?.let { it1 ->
-                                    courseViewModel.deleteCourse(
-                                        it1
-                                    )
-                                }; navController.popBackStack()
-                            },
-                            size = 50.dp,
-                            spaceBy = 20.dp
-                        )
                     }
                 }
             }
@@ -123,5 +96,6 @@ fun DetailsCourse(
         }
 
     }
+
 
 }

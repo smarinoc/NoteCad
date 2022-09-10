@@ -90,7 +90,10 @@ fun GradeItem(
                             id_course = idCourse
                         )
                     )
-                })
+                },
+                size = 50.dp,
+                spaceBy = 20.dp
+            )
         }
     }
 

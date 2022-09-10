@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr04_20221.notecad.ui
+package co.edu.udea.compumovil.gr04_20221.notecad.ui.composables
 
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InputDropDown(
-    options: Array<String>,
+    options: List<String>,
     icon: ImageVector,
     contentDescription: String?,
     placeholder: String,

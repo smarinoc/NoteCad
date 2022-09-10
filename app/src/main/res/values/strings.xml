@@ -53,4 +53,7 @@
     <string name="delete">Eliminar</string>
     <string name="confirm">Confirmar</string>
     <string name="delete_question">¿Seguro que quiere eliminar?</string>
+    <string name="calculator">Calculadora</string>
+    <string name="add_schedule">Añadir Horario</string>
+    <string name="course">Materia</string>
 </resources>

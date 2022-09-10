@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 interface ScheduleRepository {
     fun getAllSchedule(): LiveData<List<ScheduleEntity>>
-    suspend fun getById(id: Int) : ScheduleEntity
+    fun getById(id: Int) : LiveData<ScheduleEntity>
     suspend fun insert(schedule: ScheduleEntity)
     suspend fun update(schedule: ScheduleEntity)
     suspend fun delete(schedule: ScheduleEntity)
@@ -20,7 +20,7 @@ class ScheduleRepositoryRoom @Inject constructor(
         return scheduleDao.getAllSchedule()
     }
 
-    override suspend fun getById(id: Int): ScheduleEntity {
+    override  fun getById(id: Int): LiveData<ScheduleEntity> {
         return scheduleDao.getById(id)
     }
 
