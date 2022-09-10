@@ -20,22 +20,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.White200
 
 @Composable
-fun ActionButtons(onEdit: () -> Unit, onDelete: () -> Unit) {
+fun ActionButtons(onEdit: () -> Unit, onDelete: () -> Unit, size: Dp, spaceBy: Dp) {
     var pickerOpen by rememberSaveable { mutableStateOf(false) }
     Row(
-        horizontalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalArrangement = Arrangement.spacedBy(spaceBy),
         verticalAlignment = Alignment.CenterVertically
     ) {
         IconButton(onClick = onEdit) {
             Icon(
                 imageVector = Icons.Rounded.Edit,
                 contentDescription = stringResource(id = R.string.edit),
-                modifier = Modifier.size(50.dp),
+                modifier = Modifier.size(size),
                 tint = Color(0xFFFF9801)
             )
         }
@@ -43,7 +44,7 @@ fun ActionButtons(onEdit: () -> Unit, onDelete: () -> Unit) {
             Icon(
                 imageVector = Icons.Rounded.Delete,
                 contentDescription = stringResource(id = R.string.delete),
-                modifier = Modifier.size(50.dp),
+                modifier = Modifier.size(size),
                 tint = Color.Red
             )
         }

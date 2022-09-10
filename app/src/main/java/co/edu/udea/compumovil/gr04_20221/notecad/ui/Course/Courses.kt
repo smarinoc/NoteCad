@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import co.edu.udea.compumovil.gr04_20221.notacad.utils.calculateFinalAverage
 import co.edu.udea.compumovil.gr04_20221.notacad.utils.calculatePartialAverage
 import co.edu.udea.compumovil.gr04_20221.notacad.utils.countCredits
+import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.CourseEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.InfoText
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InfoNumber
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
@@ -36,6 +37,7 @@ fun Courses(
     courseViewModel: CourseViewModel = hiltViewModel(),
     gradeViewModel: GradeViewModel = hiltViewModel()
 ) {
+    courseViewModel.deleteCourse(CourseEntity(id = 99, name = "", credits = 0, color = ""))
     title.value = stringResource(R.string.subjects)
     val courses by courseViewModel.courses.observeAsState(arrayListOf())
     val grades by gradeViewModel.getAllGrade().observeAsState(arrayListOf())

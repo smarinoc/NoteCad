@@ -12,7 +12,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.ScheduleEntity
 
 @Database(
     entities = [CourseEntity::class, GradeEntity::class, ScheduleEntity::class],
-    version = 1
+    version = 2
 )
 abstract class DataBase() : RoomDatabase() {
     abstract fun getCourseDao(): CourseDao

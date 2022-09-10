@@ -14,8 +14,10 @@ import androidx.room.PrimaryKey
 data class ScheduleEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id") val id: Int = 0,
-    @ColumnInfo(name = "day") val day: String,
-    @ColumnInfo(name = "start_hour") val start_hour: String,
-    @ColumnInfo(name = "end_hour") val end_hour: String,
-    @ColumnInfo(name = "id_course") val id_course: Int,
+    @ColumnInfo(name = "day") val day: Int,
+    @ColumnInfo(name = "start_hour") val startHour: String,
+    @ColumnInfo(name = "end_hour") val endHour: String,
+    @ColumnInfo(name = "id_course") val idCourse: Int,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "color") val color: String,
 )

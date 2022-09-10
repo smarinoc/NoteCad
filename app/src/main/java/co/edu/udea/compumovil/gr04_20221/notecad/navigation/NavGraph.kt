@@ -10,9 +10,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.Course.FormCourse
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.Course.Courses
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.Course.DetailCourseCalculare
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.Course.DetailsCourse
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.Grade.FormGrade
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.Grade.FormGradeCalculate
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.Menu
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.reminder.Map
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.schedule.FormSchedule
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.schedule.Schedule
 
 @Composable
 fun NavGraph(title: MutableState<String>, navController: NavHostController) {
@@ -65,5 +70,24 @@ fun NavGraph(title: MutableState<String>, navController: NavHostController) {
                 title = title
             )
         }
+        composable(Screen.FORM_GRADE_CALCULATE.route) { FormGradeCalculate(navController, title) }
+        composable(Screen.DETAILS_COURSE_CALCULATE.route) { DetailCourseCalculare(navController, title) }
+        composable(Screen.MAP.route) { Map(navController, title) }
+        composable(Screen.SCHEDULE.route) { Schedule(navController, title) }
+        composable(
+            route = "${Screen.FORM_SCHEDULE.route}/{idSchedule}",
+            arguments = listOf(navArgument("idSchedule") {
+                type = NavType.IntType
+            })
+        )
+        { backStackEntry ->
+            val idSchedule = backStackEntry.arguments?.getInt("idSchedule")
+            FormSchedule(
+                idSchedule = idSchedule!!,
+                navController = navController,
+                title = title
+            )
+        }
+
     }
 }

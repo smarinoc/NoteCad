@@ -11,14 +11,22 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr04_20221.notecad.R
+import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.CourseEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.navigation.Screen
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.MenuButton
+import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.CourseViewModel
 
 @Composable
-fun Menu(navController: NavHostController, title: MutableState<String>) {
-    title.value=""
+fun Menu(
+    navController: NavHostController,
+    title: MutableState<String>,
+    viewModel: CourseViewModel = hiltViewModel(),
+) {
+    viewModel.addCourse(CourseEntity(id = 99, name = "", credits = 0, color = ""))
+    title.value = ""
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -38,7 +46,7 @@ fun Menu(navController: NavHostController, title: MutableState<String>) {
                 contentDescription = "Schedule",
                 text = stringResource(R.string.schedule),
                 onClick = {
-                    navController.navigate(Screen.COURSES.route)
+                    navController.navigate(Screen.SCHEDULE.route)
                 }
             )
         }
@@ -49,7 +57,8 @@ fun Menu(navController: NavHostController, title: MutableState<String>) {
                 contentDescription = "Calculate",
                 text = stringResource(R.string.quick_calculation),
                 onClick = {
-                    navController.navigate(Screen.COURSES.route)
+
+                    navController.navigate(Screen.DETAILS_COURSE_CALCULATE.route)
                 }
             )
             MenuButton(
@@ -57,7 +66,7 @@ fun Menu(navController: NavHostController, title: MutableState<String>) {
                 contentDescription = "RememberMe",
                 text = stringResource(R.string.reminders),
                 onClick = {
-                    navController.navigate(Screen.COURSES.route)
+                    navController.navigate(Screen.MAP.route)
                 }
             )
         }

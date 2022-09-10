@@ -3,6 +3,7 @@ package co.edu.udea.compumovil.gr04_20221.notecad.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.CourseEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.ScheduleEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.repository.ScheduleRepositoryRoom
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +19,10 @@ class ScheduleViewModel @Inject constructor(
 
     val schedules: LiveData<List<ScheduleEntity>> by lazy {
         scheduleRepositoryRoom.getAllSchedule()
+    }
+
+    fun scheduleById(id: Int): LiveData<ScheduleEntity> {
+        return scheduleRepositoryRoom.getById(id)
     }
     fun addSchedule(schedule: ScheduleEntity) {
         viewModelScope.launch(Dispatchers.IO) {
