@@ -56,4 +56,9 @@
     <string name="calculator">Calculadora</string>
     <string name="add_schedule">Añadir Horario</string>
     <string name="course">Materia</string>
+    <string name="add_reminder">Añadir recordatorio</string>
+    <string name="time">Hora</string>
+    <string name="date">Fecha</string>
+    <string name="location">Ubicación</string>
+    <string name="saved">Guardado</string>
 </resources>

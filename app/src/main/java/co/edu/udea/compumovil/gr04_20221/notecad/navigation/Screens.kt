@@ -9,7 +9,8 @@ sealed class Screen(val route: String) {
     object FORM_GRADE_CALCULATE : Screen("FORM_GRADE_CALCULATE")
     object DETAILS_COURSE_CALCULATE : Screen("DETAILS_COURSE_CALCULATE")
     object MENU : Screen("MENU")
-    object MAP : Screen("MAP")
     object SCHEDULE : Screen("SCHEDULE")
     object FORM_SCHEDULE : Screen("FORM_SCHEDULE")
+    object FORM_REMINDER : Screen("FORM_REMINDER")
+    object REMINDERS : Screen("REMINDERS")
 }

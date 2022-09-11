@@ -65,9 +65,7 @@ fun Menu(
                 imageVector = Icons.Rounded.RememberMe,
                 contentDescription = "RememberMe",
                 text = stringResource(R.string.reminders),
-                onClick = {
-                    navController.navigate(Screen.MAP.route)
-                }
+                onClick = { navController.navigate("${Screen.REMINDERS.route}") },
             )
         }
     }

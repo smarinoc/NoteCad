@@ -23,4 +23,8 @@ abstract class RepositoryModule {
     @Singleton
     abstract fun ScheduleRepositoryRoom(repo: ScheduleRepositoryRoom): ScheduleRepository
 
+    @Binds
+    @Singleton
+    abstract fun ReminderRepositoryRoom(repo: ReminderRepositoryRoom): ReminderRepository
+
 }
