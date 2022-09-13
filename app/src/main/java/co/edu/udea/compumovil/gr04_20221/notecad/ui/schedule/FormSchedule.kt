@@ -24,7 +24,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.Button
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InputDropDown
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.TimePicker
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.primary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.CourseViewModel
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.ScheduleViewModel
 
@@ -70,7 +70,7 @@ fun FormSchedule(
     Surface(
         shadowElevation = 5.dp,
         shape = Shapes.large,
-        border = BorderStroke(width = 1.dp, color = Teal200),
+        border = BorderStroke(width = 1.dp, color = primary),
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
             .wrapContentHeight()

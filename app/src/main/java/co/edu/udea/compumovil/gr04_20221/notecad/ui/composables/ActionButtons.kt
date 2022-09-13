@@ -23,7 +23,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr04_20221.notecad.R
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.White200
 
 @Composable
 fun ActionButtons(onEdit: () -> Unit, onDelete: () -> Unit, size: Dp, spaceBy: Dp) {
@@ -70,7 +69,6 @@ fun ActionButtons(onEdit: () -> Unit, onDelete: () -> Unit, size: Dp, spaceBy: D
                 Text(text = stringResource(id =R.string.delete_question))
             },
             shape = RoundedCornerShape(20.dp),
-            containerColor = White200,
         )
     }
 

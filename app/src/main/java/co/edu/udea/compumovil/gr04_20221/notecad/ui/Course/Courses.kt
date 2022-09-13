@@ -25,7 +25,7 @@ import co.edu.udea.compumovil.gr04_20221.notacad.utils.countCredits
 import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.CourseEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.InfoText
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InfoNumber
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.secondary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.GradeViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -45,7 +45,7 @@ fun Courses(
         FloatingActionButton(
             onClick = { navController.navigate("${Screen.FORM_COURSE.route}/${-1}") },
             shape = Shapes.Full,
-            containerColor = Teal200
+            containerColor = secondary
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Localized description")
         }

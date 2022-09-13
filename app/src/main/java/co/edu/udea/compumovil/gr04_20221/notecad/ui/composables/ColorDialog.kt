@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.White200
 
 
 
@@ -34,7 +33,6 @@ fun ColorDialog(
 
     AlertDialog(
         shape = RoundedCornerShape(20.dp),
-        containerColor = White200,
         onDismissRequest = onDismiss,
         text = {
             LazyVerticalGrid(

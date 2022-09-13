@@ -23,7 +23,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.navigation.Screen
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InfoDetail
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.layout.LayoutInfo
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.secondary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.GradeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -43,7 +43,7 @@ fun DetailCourseCalculare(
         FloatingActionButton(
             onClick = { navController.navigate(Screen.FORM_GRADE_CALCULATE.route) },
             shape = Shapes.Full,
-            containerColor = Teal200
+            containerColor = secondary
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Localized description")
         }

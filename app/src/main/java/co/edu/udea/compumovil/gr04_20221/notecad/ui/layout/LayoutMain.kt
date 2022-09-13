@@ -9,10 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import co.edu.udea.compumovil.gr04_20221.notecad.navigation.NavGraph
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.primary
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,14 +24,14 @@ fun LayoutMain() {
     Scaffold(
         topBar = {
             SmallTopAppBar(title = {
-                Text(text = title.value)
+                Text(text = title.value, color = Color.White)
             }, navigationIcon = {
                 IconButton(onClick = { navController.popBackStack() }) {
                     Icon(Icons.Rounded.ArrowBack, contentDescription = "ArrowBack")
                 }
             },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = Teal200
+                    containerColor = primary
                 )
             )
         },

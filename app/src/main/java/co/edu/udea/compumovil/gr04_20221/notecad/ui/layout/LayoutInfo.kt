@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Typography
 
 @Composable

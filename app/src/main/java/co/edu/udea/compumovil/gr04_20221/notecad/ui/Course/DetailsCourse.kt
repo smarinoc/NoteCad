@@ -24,7 +24,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.navigation.Screen
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.ActionButtons
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InfoDetail
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.layout.LayoutInfo
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.secondary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.CourseViewModel
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.GradeViewModel
 
@@ -48,7 +48,7 @@ fun DetailsCourse(
         FloatingActionButton(
             onClick = { navController.navigate("${Screen.FORM_GRADE.route}/${id}&${-1}") },
             shape = Shapes.Full,
-            containerColor = Teal200
+            containerColor = secondary
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Localized description")
         }

@@ -27,8 +27,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.data.entites.ReminderEntity
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.*
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.White200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.primary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.ReminderViewModel
 
 
@@ -65,7 +64,7 @@ fun FormReminder(
     Surface(
         shadowElevation = 5.dp,
         shape = Shapes.large,
-        border = BorderStroke(width = 1.dp, color = Teal200),
+        border = BorderStroke(width = 1.dp, color = primary),
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
             .wrapContentHeight()
@@ -110,6 +109,7 @@ fun FormReminder(
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                     Button(text = stringResource(id = R.string.cancel), onClick = {
                         navController.popBackStack()
+                        focusManager.clearFocus()
                     })
                     Spacer(modifier = Modifier.width(10.dp))
                     Button(
@@ -140,7 +140,7 @@ fun FormReminder(
                                     )
                                 )
                             }
-
+                            focusManager.clearFocus()
                             navController.popBackStack()
                         })
                 }
@@ -176,7 +176,6 @@ fun FormReminder(
                     )
                 },
                 shape = RoundedCornerShape(10.dp),
-                containerColor = White200,
             )
         }
     }
@@ -199,6 +198,7 @@ fun FormReminder(
                             )
                         )
                         pickerOpen = false
+                        focusManager.clearFocus()
                         navController.popBackStack()
                         }) {
                     Text(text = stringResource(id = R.string.delete))
@@ -215,7 +215,6 @@ fun FormReminder(
                 Text(text = stringResource(id =R.string.delete_question))
             },
             shape = RoundedCornerShape(20.dp),
-            containerColor = White200,
         )
     }
 }

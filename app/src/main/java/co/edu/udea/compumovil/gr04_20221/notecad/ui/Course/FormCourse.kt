@@ -29,7 +29,7 @@ import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.InputForm
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.Button
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.composables.SelectColor
 import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Shapes
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.primary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.CourseViewModel
 
 @Composable
@@ -54,7 +54,7 @@ fun FormCourse(
     Surface(
         shadowElevation = 5.dp,
         shape = Shapes.large,
-        border = BorderStroke(width = 1.dp, color = Teal200),
+        border = BorderStroke(width = 1.dp, color = primary),
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
             .wrapContentHeight()
@@ -95,12 +95,14 @@ fun FormCourse(
             Spacer(modifier = Modifier.height(20.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                 Button(text = stringResource(id = R.string.cancel), onClick = {
+                    focusManager.clearFocus()
                     navController.popBackStack()
                 })
                 Spacer(modifier = Modifier.width(10.dp))
                 Button(
                     text = stringResource(id = (if (course != null) R.string.edit else R.string.save)),
                     onClick = {
+
                         if (course != null) {
                             viewModel.updateCourse(
                                 CourseEntity(
@@ -119,7 +121,7 @@ fun FormCourse(
                                 )
                             )
                         }
-
+                        focusManager.clearFocus()
                         navController.popBackStack()
                     })
             }

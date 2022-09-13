@@ -17,7 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr04_20221.notecad.R
 import co.edu.udea.compumovil.gr04_20221.notecad.navigation.Screen
-import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.Teal200
+import co.edu.udea.compumovil.gr04_20221.notecad.ui.theme.secondary
 import co.edu.udea.compumovil.gr04_20221.notecad.viewModel.ReminderViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,7 +34,7 @@ fun Reminders(
         FloatingActionButton(
             onClick = { navController.navigate("${Screen.FORM_REMINDER.route}/${-1}") },
             shape = Shapes.Full,
-            containerColor = Teal200
+            containerColor = secondary
         ) {
             Icon(Icons.Filled.Add, contentDescription = "Localized description")
         }
